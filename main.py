@@ -15,6 +15,13 @@ conn = psycopg2.connect(
     )
 cursor = conn.cursor(cursor_factory=RealDictCursor)
 
+@app.route("/")
+def index():
+    return render_template("login.html")
+@app.route("/index.html")
+def index1():
+    return render_template("index.html")
+
 
 
 
