@@ -22,6 +22,20 @@ def index():
 def index1():
     return render_template("index.html")
 
+@app.route("/submit", methods=['POST'])
+def submit():
+    cursor = conn.cursor()
+    try:
+        cursor.execute("INSERT INTO customer(customer_id, first_name, last_name, mail_id, address) VALUES (%s,%s,%s,%s,%s)",
+                       (request.form['customerid'], request.form['firstname'], request.form['lastname'], request.form['gmail'], request.form['address']))
+        conn.commit()
+        return redirect(url_for('home'))
+    except Exception as e:
+        conn.rollback()
+        return "An error occurred: {}".format(str(e))
+    finally:
+        cursor.close()
+
 
 
 
