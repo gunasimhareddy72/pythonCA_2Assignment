@@ -6,6 +6,17 @@ app = Flask(__name__, template_folder='templates')
 app.secret_key = "random random"
 
 
+conn = psycopg2.connect(
+            dbname="postgres",
+            user="postgres",
+            password="guna",
+            host="localhost",
+            port="5432"
+    )
+cursor = conn.cursor(cursor_factory=RealDictCursor)
+
+
+
 
 
 
