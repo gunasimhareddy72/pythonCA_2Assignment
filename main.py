@@ -20,7 +20,10 @@ def index():
     return render_template("login.html")
 @app.route("/index.html")
 def index1():
-    return render_template("index.html")
+     with open('grocery_items.json') as f:
+        data = json.load(f)
+        grocery_items = data["items"]
+        return render_template("index.html",grocery_items=grocery_items)
 
 @app.route("/submit", methods=['POST'])
 def submit():
