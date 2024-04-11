@@ -25,3 +25,29 @@
                     <th>Grocery_list</th>
                 </tr>
             </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.customer_id }}</td>
+                    <td>{{ customer.first_name }}</td>
+                    <td>{{ customer.last_name }}</td>
+                    <td>{{ customer.mail_id }}</td>
+                    <td>{{ customer.address }}</td>
+                    <td>{{ customer.gecrios_list }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('delete_customer', customer_id=customer['customer_id']) }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <form method="GET" action="{{ url_for('get_customer_details', customer_id=customer['customer_id']) }}">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+      
+    </body>
+</html>
