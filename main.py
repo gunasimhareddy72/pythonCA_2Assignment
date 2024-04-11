@@ -1,5 +1,6 @@
-import sqlite3
-import random
+import psycopg2
+import json
+from psycopg2.extras import RealDictCursor
 from flask import Flask, session, render_template, request, g
 
 app = Flask(__name__, template_folder='templates')
