@@ -79,6 +79,22 @@ def get_customer_details(customer_id):
 
     customer = cursor.fetchone()
     return render_template("editcustomer.html", customer=customer)
+@app.route("/edit_customer/<customer_id>", methods=['GET', 'POST'])
+def edit_customer(customer_id):
+    if request.method == 'POST':
+        try:
+            first_name = request.form['firstname']
+            last_name = request.form['lastname']
+            address = request.form['address']
+            email_id = request.form['gmail']
+            
+            cursor.execute("UPDATE customer SET first_name=%s, last_name=%s, mail_id=%s, address=%s WHERE customer_id=%s",
+               (first_name, last_name, email_id, address, customer_id))
+            conn.commit()
+            return redirect(url_for('home'))
+        except Exception as e:
+            conn.rollback()
+            return "An error occurred: {}".format(str(e))
 
 
 
