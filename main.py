@@ -47,6 +47,23 @@ def submit():
    except Exception as e:
         conn.rollback()
         return "An error occurred: {}".format(str(e))
+@app.route("/home.html", methods=['GET','POST'])
+def home():
+    cursor.execute("SELECT * FROM customer")
+    customer = cursor.fetchall()
+    return render_template('home.html', customers=customer)
+
+
+@app.route("/delete_customer/<customer_id>", methods=['POST'])
+def delete_customer(customer_id):
+    print("Customer ID:", customer_id)
+    try:
+        cursor.execute("DELETE FROM customer WHERE customer_id = %s", (customer_id,))
+        conn.commit()
+        return redirect('/home.html')  
+    except Exception as e:
+        conn.rollback()
+        return "An error occurred: {}".format(str(e))
 
 
 
