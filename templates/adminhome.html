@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css' )}}">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <div class="Heading">
+            <center><h1> Welcome </h1></center>
+        </div>
+        <form class="homeform" id="form1" >
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button type="submit">Search</button>
+            </div>
+        </form>
+        <table id="customerTable">
+            <thead>
+                <tr>
+                    <th>Customer_ID</th>
+                    <th>First_name</th>
+                    <th>Last_name</th>
+                    <th>Mail_id</th>
+                    <th>Address</th>
+                    <th>Grocery_list</th>
+                </tr>
+            </thead>
