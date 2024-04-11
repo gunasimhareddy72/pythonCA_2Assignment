@@ -1,7 +1,7 @@
 import psycopg2
 import json
 from psycopg2.extras import RealDictCursor
-from flask import Flask, session, render_template, request, g
+from flask import Flask, session, render_template, request, g,redirect,url_for
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = "random random"
