@@ -24,17 +24,26 @@ def index1():
 
 @app.route("/submit", methods=['POST'])
 def submit():
-    cursor = conn.cursor()
-    try:
-        cursor.execute("INSERT INTO customer(customer_id, first_name, last_name, mail_id, address) VALUES (%s,%s,%s,%s,%s)",
-                       (request.form['customerid'], request.form['firstname'], request.form['lastname'], request.form['gmail'], request.form['address']))
+    
+    
+   try:
+        
+        customer_id = request.form['customerid']
+        first_name = request.form['firstname']
+        last_name = request.form['lastname']
+        email = request.form['gmail']
+        address = request.form['address']
+        gecrios_list = request.form.getlist('grocery_items[]')  
+
+        
+        cursor.execute("INSERT INTO customer (customer_id, first_name, last_name, mail_id, address, gecrios_list) VALUES (%s, %s, %s, %s, %s, %s)",
+                       (customer_id, first_name, last_name, email, address, gecrios_list))
         conn.commit()
+
         return redirect(url_for('home'))
-    except Exception as e:
+   except Exception as e:
         conn.rollback()
         return "An error occurred: {}".format(str(e))
-    finally:
-        cursor.close()
 
 
 
