@@ -64,6 +64,22 @@ def delete_customer(customer_id):
     except Exception as e:
         conn.rollback()
         return "An error occurred: {}".format(str(e))
+    
+@app.route("/editcustomer.html")
+def editcustomer():
+    with open('grocery_items.json') as f:
+        data = json.load(f)
+        grocery_items = data["items"]
+        return render_template('editcustomer.html',grocery_items=grocery_items)
+
+@app.route("/get_customer_details/<customer_id>")
+def get_customer_details(customer_id):
+     
+    cursor.execute("SELECT * FROM customer WHERE customer_id = %s", (customer_id,))
+
+    customer = cursor.fetchone()
+    return render_template("editcustomer.html", customer=customer)
+
 
 
 
