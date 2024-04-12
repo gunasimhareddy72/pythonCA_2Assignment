@@ -38,6 +38,11 @@ def login():
             return "Invalid username or password"
     
     return render_template("login.html")
+@app.route("/adminhome.html", methods=['GET','POST'])
+def adminhome():
+    cursor.execute("SELECT * FROM customer")
+    customer = cursor.fetchall()
+    return render_template('adminhome.html', customers=customer)
 @app.route("/index.html")
 def index1():
      with open('grocery_items.json') as f:
