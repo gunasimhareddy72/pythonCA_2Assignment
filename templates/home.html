@@ -14,4 +14,57 @@
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search...">
                 <button type="submit">Search</button>
-            </div>
+            </div><!DOCTYPE html>
+            <html>
+                <head>
+                    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css' )}}">
+                    <title>Home Page</title>
+                </head>
+                <body>
+                    <div class="Heading">
+                        <center><h1> Welcome </h1></center>
+                    </div>
+                    <form class="homeform" id="form1" action="{{ url_for('search_customer') }}" method="post">
+                        <div class="search-container">
+                            <input type="text" id="searchInput" name="search_query" placeholder="Search...">
+                            <button type="submit">Search</button>
+                        </div>
+                    </form>
+                    
+                    <table id="customerTable">
+                        <thead>
+                            <tr>
+                                <th>Customer_ID</th>
+                                <th>First_name</th>
+                                <th>Last_name</th>
+                                <th>Mail_id</th>
+                                <th>Address</th>
+                                <th>Grocery_list</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customers %}
+                            <tr>
+                                <td>{{ customer.customer_id }}</td>
+                                <td>{{ customer.first_name }}</td>
+                                <td>{{ customer.last_name }}</td>
+                                <td>{{ customer.mail_id }}</td>
+                                <td>{{ customer.address }}</td>
+                                <td>{{ customer.gecrios_list }}</td>
+                                <td>
+                                    <form method="post" action="{{ url_for('delete_customer', customer_id=customer['customer_id']) }}">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                    <form method="GET" action="{{ url_for('get_customer_details', customer_id=customer['customer_id']) }}">
+                                        <button type="submit">Edit</button>
+                                    </form>
+                                </td>
+                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                  
+                </body>
+            </html>
