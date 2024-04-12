@@ -141,6 +141,13 @@ def edit_customer_admin(customer_id):
         except Exception as e:
             conn.rollback()
             return "An error occurred: {}".format(str(e))
+@app.route("/get_customer_details_admin/<customer_id>")
+def get_customer_details_admin(customer_id):
+     
+    cursor.execute("SELECT * FROM customer WHERE customer_id = %s", (customer_id,))
+
+    customer = cursor.fetchone()
+    return render_template("editcustomeradmin.html", customer=customer)
 
 
 
