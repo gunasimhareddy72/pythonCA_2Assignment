@@ -125,6 +125,22 @@ def edit_customer_admin(customer_id):
         except Exception as e:
             conn.rollback()
             return "An error occurred: {}".format(str(e))
+@app.route("/edit_customer_admin/<customer_id>", methods=['GET', 'POST'])
+def edit_customer_admin(customer_id):
+    if request.method == 'POST':
+        try:
+            first_name = request.form['firstname']
+            last_name = request.form['lastname']
+            address = request.form['address']
+            email_id = request.form['gmail']
+            
+            cursor.execute("UPDATE customer SET first_name=%s, last_name=%s, mail_id=%s, address=%s WHERE customer_id=%s",
+               (first_name, last_name, email_id, address, customer_id))
+            conn.commit()
+            return redirect(url_for('adminhome'))
+        except Exception as e:
+            conn.rollback()
+            return "An error occurred: {}".format(str(e))
 
 
 
