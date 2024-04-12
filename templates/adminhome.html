@@ -8,11 +8,14 @@
         <div class="Heading">
             <center><h1> Welcome </h1></center>
         </div>
-        <form class="homeform" id="form1" >
+        <form class="homeform" id="form1" action="{{ url_for('search_Admin_customer') }}" method="post">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search...">
+                <input type="text" id="searchInput" name="search_query" placeholder="Search...">
                 <button type="submit">Search</button>
             </div>
+            <form class="donebutton" id="donebutton" action="adminhome.html">
+                <button type="submit">Done</button>
+            </form>
         </form>
         <table id="customerTable">
             <thead>
@@ -35,10 +38,10 @@
                     <td>{{ customer.address }}</td>
                     <td>{{ customer.gecrios_list }}</td>
                     <td>
-                        <form method="post" action="{{ url_for('delete_customer', customer_id=customer['customer_id']) }}">
+                        <form method="post" action="{{ url_for('delete_customer_admin', customer_id=customer['customer_id']) }}">
                             <button type="submit">Delete</button>
                         </form>
-                        <form method="GET" action="{{ url_for('get_customer_details', customer_id=customer['customer_id']) }}">
+                        <form method="GET" action="{{ url_for('get_customer_details_admin', customer_id=customer['customer_id']) }}">
                             <button type="submit">Edit</button>
                         </form>
                     </td>
