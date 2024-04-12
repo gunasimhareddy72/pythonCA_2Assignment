@@ -109,6 +109,7 @@ def search_Admin_customer():
         else:
            
             return redirect('adminhome.html')
+    return redirect('adminhome.html')    
 
 
 
