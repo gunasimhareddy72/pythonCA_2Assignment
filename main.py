@@ -19,6 +19,25 @@ cursor = conn.cursor(cursor_factory=RealDictCursor)
 @app.route("/")
 def index():
     return render_template("login.html")
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        cursor.execute("SELECT * FROM user_table WHERE username = %s AND password = %s", (username, password))
+        user = cursor.fetchone()
+        cursor.execute("SELECT * FROM customer")
+        customer = cursor.fetchall()
+        
+        
+        if user:
+            session['logged_in'] = True
+            session['username'] = username
+            return render_template("adminhome.html",customers=customer)
+        else:
+            return "Invalid username or password"
+    
+    return render_template("login.html")
 @app.route("/index.html")
 def index1():
      with open('grocery_items.json') as f:
