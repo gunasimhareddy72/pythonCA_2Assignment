@@ -1,0 +1,33 @@
+.nav{
+    padding: 30px;
+    background-color: bisque;
+
+}
+
+.head{
+    padding: 50px;
+    background-color: powderblue;
+    margin: 10px;
+}
+
+.loginForm{
+    padding: 100px;
+    background-color: powderblue;
+    margin: 40px;
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    left: 750px;
+}
+
+.loginForm input{
+    margin: 10px;
+    width: 200px;
+    height: 50px;
+}
+.loginForm button{
+    height: 50px;
+    width: 150px;
+    position: absolute;
+    left: 150px;
+}
