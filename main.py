@@ -96,6 +96,19 @@ def edit_customer(customer_id):
         except Exception as e:
             conn.rollback()
             return "An error occurred: {}".format(str(e))
+        
+@app.route("/searchadmin", methods=['POST'])
+def search_Admin_customer():
+    if request.method == 'POST':
+        search_query = request.form.get('search_query')
+        if search_query:
+            
+            cursor.execute("SELECT * FROM customer WHERE first_name ILIKE %s OR last_name ILIKE %s", (f'%{search_query}%', f'%{search_query}%'))
+            search_results = cursor.fetchall()
+            return render_template('adminhome.html', customers=search_results)
+        else:
+           
+            return redirect('adminhome.html')
 
 
 
