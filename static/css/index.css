@@ -46,3 +46,44 @@ body{
     top: 20px;
     left: 20px;
 }
+.buttonhome button{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    width: 150px;
+    height: 50px;
+    margin: 20px;
+    color: red;
+}
+.Searchcontainer{
+    padding: 100px;
+    background: white;
+    width: 350px;
+    height: 200px;
+    position: absolute;
+    top: 400px;
+    left: 200px;
+}
+.searchcontainer-form input{ 
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    width: 200px;
+    height: 40px;
+    margin: 5px;
+}
+
+.AnotherForm{
+    padding: 100px;
+    background: white;
+    width: 300px;
+    position: absolute;
+    left: 100px;
+    top: 300px;
+}
