@@ -167,12 +167,15 @@ def get_customer_details_admin(customer_id):
 
     customer = cursor.fetchone()
     return render_template("editcustomeradmin.html", customer=customer)
-
-
-
-
-
-
-
+@app.route("/delete_customer_admin/<customer_id>", methods=['POST'])
+def delete_customer_admin(customer_id):
+    print("Customer ID:", customer_id)
+    try:
+        cursor.execute("DELETE FROM customer WHERE customer_id = %s", (customer_id,))
+        conn.commit()
+        return redirect('/adminhome.html')  
+    except Exception as e:
+        conn.rollback()
+        return "An error occurred: {}".format(str(e))
 if __name__ == '__main__':
     app.run(debug=True)
