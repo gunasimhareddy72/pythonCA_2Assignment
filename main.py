@@ -1,12 +1,14 @@
 import psycopg2
 import json
 from psycopg2.extras import RealDictCursor
-from flask import Flask, session, render_template, request, g,redirect,url_for
+from flask import Flask, session, render_template, request, redirect, g, url_for
+
+
 
 app = Flask(__name__, template_folder='templates')
-app.secret_key = "random random"
+app.secret_key = "Find me if you can"
 
-
+    
 conn = psycopg2.connect(
             dbname="postgres",
             user="postgres",
@@ -15,6 +17,10 @@ conn = psycopg2.connect(
             port="5432"
     )
 cursor = conn.cursor(cursor_factory=RealDictCursor)
+
+
+
+
 
 @app.route("/")
 def index():
@@ -38,11 +44,13 @@ def login():
             return "Invalid username or password"
     
     return render_template("login.html")
+
 @app.route("/adminhome.html", methods=['GET','POST'])
 def adminhome():
     cursor.execute("SELECT * FROM customer")
     customer = cursor.fetchall()
     return render_template('adminhome.html', customers=customer)
+
 @app.route("/index.html")
 def index1():
      with open('grocery_items.json') as f:
@@ -72,11 +80,26 @@ def submit():
    except Exception as e:
         conn.rollback()
         return "An error occurred: {}".format(str(e))
+            
 @app.route("/home.html", methods=['GET','POST'])
 def home():
     cursor.execute("SELECT * FROM customer")
     customer = cursor.fetchall()
     return render_template('home.html', customers=customer)
+@app.route("/search", methods=['POST'])
+def search_customer():
+    if request.method == 'POST':
+        search_query = request.form.get('search_query')
+        if search_query:
+            
+            cursor.execute("SELECT * FROM customer WHERE first_name ILIKE %s OR last_name ILIKE %s", (f'%{search_query}%', f'%{search_query}%'))
+            search_results = cursor.fetchall()
+            return render_template('home.html', customers=search_results)
+        else:
+          
+            return redirect(url_for('home'))
+    
+    return redirect(url_for('home'))
 
 
 @app.route("/delete_customer/<customer_id>", methods=['POST'])
@@ -89,7 +112,6 @@ def delete_customer(customer_id):
     except Exception as e:
         conn.rollback()
         return "An error occurred: {}".format(str(e))
-    
 @app.route("/editcustomer.html")
 def editcustomer():
     with open('grocery_items.json') as f:
@@ -172,15 +194,12 @@ def get_customer_details_admin(customer_id):
 
     customer = cursor.fetchone()
     return render_template("editcustomeradmin.html", customer=customer)
-@app.route("/delete_customer_admin/<customer_id>", methods=['POST'])
-def delete_customer_admin(customer_id):
-    print("Customer ID:", customer_id)
-    try:
-        cursor.execute("DELETE FROM customer WHERE customer_id = %s", (customer_id,))
-        conn.commit()
-        return redirect('/adminhome.html')  
-    except Exception as e:
-        conn.rollback()
-        return "An error occurred: {}".format(str(e))
+
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
