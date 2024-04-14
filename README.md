@@ -16,6 +16,16 @@ So here's the screenshots below to show the pages how they are designed.
 ![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/1258742b-5188-482e-ab73-0d86d6df2e37)
 
 Contribution:
+Mahendra Vajja(10639742):
+* Created the API for editcustomer.html.
+* Created the API for get_customer_details.
+* Created the API for edit_customer.
+* Created the API for searchadmin.
+* Created the API for /edit_customer_admin.
+* Created the API for get_customer_details_admin.
+* Created the API for delete_customer_admin.
+* Customer form to enter the customer details.
+* Correct the errors in html and css with help of my group mate. 
 
 
 
