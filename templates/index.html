@@ -8,30 +8,34 @@
         <div class="Head">
             <center><h1>GROCERY STORE</h1></center>
         </div>
-        <form class="LoginForm"  method="get" id="form" action="home.html">   
+        <form class="LoginForm" id="indexform" action="{{ url_for('submit') }}" method="POST">   
             <div class="Container">
                 <div class="inputfields" method="POST">
-                    <center><input name="FirstName" type="text" id="Fname" placeholder="Enter your Firstname"></center>
-                    <center><input name="LastName" type="text" id="Lname" placeholder="Enter your Lastname"></center>
-                    <center><input name="CustomerID" type="text" id="CustID" placeholder="Enter your CustomerID"></center>
-                    <center><input name="Contact_no" type="tel" id="contact" placeholder="Enter your Contact info"></center>
+                    <center><input name="firstname" type="text" id="FirstName" placeholder="Enter your Firstname"></center>
+                    <center><input name="lastname" type="text" id="LastName" placeholder="Enter your Lastname"></center>
+                    <center><input name="customerid" type="text" id="CustomerID" placeholder="Enter your CustomerID"></center>
                     <center><input name="address" type="text" id="address" placeholder="Enter your address"></center>
                     <center><input name="gmail" type="email" id="gmail" placeholder="Enter your gmail"></center>
-                    <div class="checkbox-container">
-                        {% for item in grocery_items %}
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="grocery_items[]" value="{{ item }}"> {{ item }}
-                            </label>
-                        {% endfor %}
-                    </div>
+                </div>    
+                <div class="checkbox-container">
+                    {% for item in grocery_items %}
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="grocery_items[]" value="{{ item }}"> {{ item }}
+                        </label>
+                    {% endfor %}
+                </div>
+                    
+                   
+                
                  
                 <div class="buttonhome" method="POST">    
-                    <center><button type="submit">submit</button></center>
-                </div> 
+                    <center><input type="submit" value="Submit"></center>
+                </div>
+            
                      
                 </div>
             </div>
-        </form> 
-         
+        </form>
+        
     </body>
 </html>
