@@ -25,6 +25,7 @@ Mahendra Vajja(10639742):
 * Created the API for get_customer_details_admin.
 * Created the API for delete_customer_admin.
 * Customer form to enter the customer details.
+* Written the html files.
 * Correct the errors in html and css with help of my group mate.
 
 Guna Simha Reddy(10628714)
