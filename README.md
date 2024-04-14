@@ -25,7 +25,18 @@ Mahendra Vajja(10639742):
 * Created the API for get_customer_details_admin.
 * Created the API for delete_customer_admin.
 * Customer form to enter the customer details.
-* Correct the errors in html and css with help of my group mate. 
+* Correct the errors in html and css with help of my group mate.
+
+Guna Simha Reddy(10628714)
+* setting up the project structure.
+* connecting the database to the python.
+* creating the required files and naming them.
+* creating the api for index.html, login.html, adminhome.html.
+* creating the API route for submit button in the customer form.
+* searching for customer API in the home.html.
+* Deleting the customer API in the home.html.
+* sql queries to create the tables inside the postgres database.
+* written css for the html.
 
 
 
