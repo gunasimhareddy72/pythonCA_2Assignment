@@ -20,7 +20,7 @@ Features:
 
 TECH STACK:
 
-Python,css, html,Javascript
+Python,css, html
 Server python Flask.
 
 
