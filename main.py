@@ -70,6 +70,30 @@ def products():
                        (username, total_quantity, total_price, product_info))
         conn.commit()
         return jsonify({"message": "Products added successfully"})
+@app.route("/adminlogin", methods=['GET', 'POST'])
+def adminlogin():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+        user = cursor.fetchone()
+        
+        
+        if user:
+            cursor.execute("SELECT * FROM customer WHERE username = %s", (username,))
+            customer = cursor.fetchone()
+            
+            if customer:
+                session['logged_in'] = True
+                session['username'] = username
+                return render_template("index.html", customer=customer)
+            else:
+                return "Customer details not found."
+        else:
+            return "Invalid username or password"
+    
+    return render_template("login.html")
 
 @app.route("/index.html")
 def index1():
