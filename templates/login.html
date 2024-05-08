@@ -7,7 +7,7 @@
     <body>
         <div class="nav">
             <nav>
-                <a href="index.html">Customer</a>
+                
             </nav>
         </div>
         <div class="head">
@@ -15,10 +15,36 @@
         </div>
         <form class="loginForm" id="login" action="{{ url_for('login')}}" method="post">
             <div class="LoginAdmin">
+                <h3>Admin Login</h3>
                 <input name="username" type="text" id="username" placeholder="Enter your username">
                 <input name="password" type="password" id="password" placeholder="Enter your password">
                 <button name="submit" type="submit" id="submit">LOGIN</button>
             </div>
         </form>
+        <form class="customerloginForm" id="login" action="{{ url_for('adminlogin')}}" method="post">
+            <div class="LoginAdmin">
+                <h3>Customer login</h3>
+                <input name="username" type="text" id="username" placeholder="Enter your username">
+                <input name="password" type="password" id="password" placeholder="Enter your password">
+                <button name="submit" type="submit" id="submit">LOGIN</button>
+            </div>
+        </form>
+        <form class="signupForm" id="indexform" action="{{ url_for('signup') }}" method="POST">   
+            <div class="Container">
+                <div class="inputfields" method="POST">
+                    <h3>Customer signupForm</h3>
+                    <center><input name="firstname" type="text" id="FirstName" placeholder="Enter your Firstname"></center>
+                    <center><input name="lastname" type="text" id="LastName" placeholder="Enter your Lastname"></center>
+                    <center><input name="address" type="text" id="address" placeholder="Enter your address"></center>
+                    <center><input name="gmail" type="email" id="gmail" placeholder="Enter your gmail"></center>
+                    <center><input name="username" type="text" id="username" placeholder="Enter your username"></center>
+                    <center><input name="password" type="password" id="password" placeholder="Enter your password"></center>
+
+                </div>    
+                <div class="buttonhome" method="POST">    
+                    <center><input type="submit" value="signup"></center>
+                </div>
+            </div>
+        </form>            
     </body>
 </html>
