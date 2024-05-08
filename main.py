@@ -199,5 +199,11 @@ def delete_customer_admin(customer_id):
     except Exception as e:
         conn.rollback()
         return "An error occurred: {}".format(str(e))
-if __name__ == '_main_':
+
+
+    
+
+
+
+if __name__ == '__main__':
     app.run(debug=True)
