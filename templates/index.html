@@ -1,41 +1,145 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css' )}}">
-        <title><h1>Grocery store</h1></title>
-    </head>
-    <body>
-        <div class="Head">
-            <center><h1>GROCERY STORE</h1></center>
-        </div>
-        <form class="LoginForm" id="indexform" action="{{ url_for('submit') }}" method="POST">   
-            <div class="Container">
-                <div class="inputfields" method="POST">
-                    <center><input name="firstname" type="text" id="FirstName" placeholder="Enter your Firstname"></center>
-                    <center><input name="lastname" type="text" id="LastName" placeholder="Enter your Lastname"></center>
-                    <center><input name="customerid" type="text" id="CustomerID" placeholder="Enter your CustomerID"></center>
-                    <center><input name="address" type="text" id="address" placeholder="Enter your address"></center>
-                    <center><input name="gmail" type="email" id="gmail" placeholder="Enter your gmail"></center>
-                </div>    
-                <div class="checkbox-container">
-                    {% for item in grocery_items %}
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="grocery_items[]" value="{{ item }}"> {{ item }}
-                        </label>
-                    {% endfor %}
-                </div>
-                    
-                   
-                
-                 
-                <div class="buttonhome" method="POST">    
-                    <center><input type="submit" value="Submit"></center>
-                </div>
-            
-                     
-                </div>
-            </div>
-        </form>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>Grocery Store</title>
+</head>
+<body>
+<div class="Head">
+    <center><h1>GROCERY STORE</h1></center>
+</div>
+<table id="customerTable">
+    <thead>
+    <tr>
+        <th>Customer_ID</th>
+        <th>First_name</th>
+        <th>Last_name</th>
+        <th>Mail_id</th>
+        <th>Address</th>
+        <th>username</th>
         
-    </body>
-</html>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ customer.customer_id }}</td>
+        <td>{{ customer.first_name }}</td>
+        <td>{{ customer.last_name }}</td>
+        <td>{{ customer.mail_id }}</td>
+        <td>{{ customer.address }}</td>
+        <td>{{ customer.username }}</td>
+       
+    </tr>
+    </tbody>
+</table>
+
+<h2>Available Products</h2>
+<form>
+    <ul>
+        <li>
+            <input type="checkbox" name="products" data-name="Apple" data-price="1.50" onchange="updateProductTable()"> Apple - $1.50
+            Quantity: <input type="number" id="quantity_Apple" name="quantity_Apple" value="1" min="1">
+        </li>
+        <li>
+            <input type="checkbox" name="products" data-name="Banana" data-price="0.75" onchange="updateProductTable()"> Banana - $0.75
+            Quantity: <input type="number" id="quantity_Banana" name="quantity_Banana" value="1" min="1">
+        </li>
+        <li>
+            <input type="checkbox" name="products" data-name="Eggs" data-price="3.75" onchange="updateProductTable()"> Eggs - $3.75
+            Quantity: <input type="number" id="quantity_Eggs" name="quantity_Eggs" value="1" min="1">
+        </li>
+        <li>
+            <input type="checkbox" name="products" data-name="Bread" data-price="1.25" onchange="updateProductTable()"> Bread - $1.25
+            Quantity: <input type="number" id="quantity_Bread" name="quantity_Bread" value="1" min="1">
+        </li>
+    </ul>
+</form>
+
+<h2>Selected Products</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody id="productTableBody">
+   
+    </tbody>
+</table>
+
+<h2>Total Price: $<span id="totalPrice">0.00</span></h2>
+<button type="submit" onclick="submitProducts()">Submit Selected Products</button>
+
+<script>
+    function updateProductTable() {
+        // Get the selected products
+        var selectedProducts = [];
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxes.forEach(function(checkbox) {
+            var productName = checkbox.getAttribute('data-name');
+            var price = parseFloat(checkbox.getAttribute('data-price'));
+            var quantityInput = document.querySelector('input[name="quantity_' + productName + '"]');
+            var quantity = parseInt(quantityInput.value);
+            selectedProducts.push({
+                product_name: productName,
+                price: price,
+                quantity: quantity
+            });
+        });
+
+        // Update the product table
+        var productTableBody = document.getElementById('productTableBody');
+        productTableBody.innerHTML = '';
+        var totalPrice = 0;
+        selectedProducts.forEach(function(product) {
+            totalPrice += product.price * product.quantity;
+            var row = '<tr>';
+            row += '<td>' + product.product_name + '</td>';
+            row += '<td>' + product.price.toFixed(2) + '</td>';
+            row += '<td>' + product.quantity + '</td>';
+            row += '</tr>';
+            productTableBody.innerHTML += row;
+        });
+
+        // Update total price
+        document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
+    }
+
+    function submitProducts() {
+        // Get the selected products
+        var selectedProducts = [];
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxes.forEach(function(checkbox) {
+            var productName = checkbox.getAttribute('data-name');
+            var price = parseFloat(checkbox.getAttribute('data-price'));
+            var quantityInput = document.querySelector('input[name="quantity_' + productName + '"]');
+            var quantity = parseInt(quantityInput.value);
+            selectedProducts.push({
+                product_name: productName,
+                price: price,
+                quantity: quantity
+            });
+        });
+
+        // Make an AJAX request to submit the selected products to the server
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/products', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    alert('Products added successfully');
+                    // Optionally, you can reload the page or perform other actions here
+                } else {
+                    alert('Failed to add products');
+                }
+            }
+        };
+        xhr.send(JSON.stringify(selectedProducts));
+    }
+</script>
+<form class="logout_button" action="login.html">
+    <CENTER><button class="logout_button">LOGOUT</button></CENTER>
+</form>
