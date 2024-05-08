@@ -94,6 +94,24 @@ def adminlogin():
             return "Invalid username or password"
     
     return render_template("login.html")
+@app.route("/signup", methods=['POST'])
+def signup():
+    first_name = request.form.get('firstname')
+    last_name = request.form.get('lastname')
+    email = request.form.get('gmail')
+    address = request.form.get('address')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    
+    
+    customer=cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+   
+    user=cursor.execute("INSERT INTO customer (first_name, last_name, mail_id, address, username) VALUES (%s, %s, %s, %s, %s)",
+                   (first_name, last_name, email, address, username))
+    
+    conn.commit()
+    
+    return render_template('login.html', customer=customer, user=user)
 
 @app.route("/index.html")
 def index1():
