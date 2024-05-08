@@ -25,7 +25,7 @@
                     <th>Last_name</th>
                     <th>Mail_id</th>
                     <th>Address</th>
-                    <th>Grocery_list</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -36,7 +36,7 @@
                     <td>{{ customer.last_name }}</td>
                     <td>{{ customer.mail_id }}</td>
                     <td>{{ customer.address }}</td>
-                    <td>{{ customer.gecrios_list }}</td>
+                   
                     <td>
                         <form method="post" action="{{ url_for('delete_customer_admin', customer_id=customer['customer_id']) }}">
                             <button type="submit">Delete</button>
@@ -50,6 +50,36 @@
                 {% endfor %}
             </tbody>
         </table>
+        <h1>Products Purchased</h1>
+       
+            
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Total Price</th>
+                <th>username</th>
+                <th>Product Names</th>
+                <th>Total Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.order_id }}</td>
+                <td>{{ product.total_price }}</td>
+                <td>{{ product.username }}</td>
+                <td>{{ product.product_names }}</td>
+                <td>{{ product.total_quantity }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form class="logout_button" action="login.html">
+        <CENTER><button class="logout_button">LOGOUT</button></CENTER>
+    </form>
         
+      
     </body>
 </html>
