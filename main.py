@@ -62,7 +62,7 @@ def index1():
     
     username = session.get('username')
     
-   
+    
     cursor.execute("SELECT * FROM product WHERE username = %s", (username,))
     products = cursor.fetchall()
 
@@ -71,7 +71,7 @@ def index1():
 @app.route("/products", methods=['POST'])
 def products():
     if request.method == 'POST':
-        
+       
         username = session.get('username')
 
        
@@ -79,7 +79,7 @@ def products():
         total_price = sum(product['price'] * product['quantity'] for product in selected_products)
         total_quantity = sum(product['quantity'] for product in selected_products)
 
-        
+      
         product_info = ', '.join(f"{product['product_name']} ({product['quantity']})" for product in selected_products)
 
        
@@ -93,7 +93,7 @@ def total_spent():
     
     username = session.get('username')
 
-    
+
     cursor.execute("SELECT SUM(total_price) AS total_spent FROM product WHERE username = %s", (username,))
     total_spent = cursor.fetchone()
 
@@ -105,13 +105,13 @@ def adminlogin():
         username = request.form['username']
         password = request.form['password']
         
-        
+       
         cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
         user = cursor.fetchone()
         
         
         if user:
-           
+            
             cursor.execute("SELECT * FROM customer WHERE username = %s", (username,))
             customer = cursor.fetchone()
             
@@ -137,10 +137,8 @@ def signup():
     username = request.form.get('username')
     password = request.form.get('password')
     
-    
+   
     customer=cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
-    
-    
     user=cursor.execute("INSERT INTO customer (first_name, last_name, mail_id, address, username) VALUES (%s, %s, %s, %s, %s)",
                    (first_name, last_name, email, address, username))
     
@@ -156,7 +154,7 @@ def submit():
         last_name = request.form['lastname']
         email = request.form['gmail']
         address = request.form['address']
-        gecrios_list = ','.join(request.form.getlist('grocery_items[]'))  # Convert list to string
+        gecrios_list = ','.join(request.form.getlist('grocery_items[]'))  
 
         cursor.execute("INSERT INTO customer (first_name, last_name, mail_id, address, gecrios_list) VALUES (%s, %s, %s, %s, %s)",
                        (first_name, last_name, email, address, gecrios_list))
