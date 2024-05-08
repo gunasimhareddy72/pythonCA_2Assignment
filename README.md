@@ -9,6 +9,24 @@ The same goes to the manager but the manager has a special feature which is logi
 This is a simple application where customer and manger are the two roles where customer orders the groceries, and manager will process the orders by packing the stuff.
 So here's the screenshots below to show the pages how they are designed.
 
+Features:
+
+* Customer can Signup and login into the applicaion using only with right credentials.
+* customer cannot create his details if any username is already exists.
+* ShopAdmin can login and delete and edit the customer details but cannot edit the customer username and password.
+* shopAdmin can see the overall purchases of each and every customer and can keep his order ready whenever customer arrives at the shop location.
+* ShopAdmin can search the customer.
+
+
+TECH STACK:
+
+Python,css, html,Javascript
+Server python Flask.
+
+
+
+
+
 
 ![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/22e76736-548e-49ad-bcf4-0118a52a89f8)
 ![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/fd9d2e0b-b8e9-4b80-a106-fd20f1dded1a)
@@ -62,6 +80,7 @@ https://www.reddit.com/r/learnpython/comments/15ptdgx/need_help_with_school_proj
 https://stackoverflow.com/questions/65788900/text-seems-a-bit-blurry-on-a-backdrop-blur-html-css
 https://www.answeroverflow.com/m/1224035009459916892/ 
 https://youtu.be/v3CSQkPJtAc (youtube video link)
+https://stackoverflow.design/product/develop/javascript/
 
 
 
