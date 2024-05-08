@@ -10,6 +10,14 @@ This is a simple application where customer and manger are the two roles where c
 So here's the screenshots below to show the pages how they are designed.
 
 
+![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/22e76736-548e-49ad-bcf4-0118a52a89f8)
+![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/fd9d2e0b-b8e9-4b80-a106-fd20f1dded1a)
+![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/92984741-1d2e-4c2a-90eb-9040ee1357c2)
+![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/f9238837-da5c-47ca-b5a1-ef988a87fc64)
+![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/67cb583b-7233-4b89-8c5b-ff8508442e5c)
+![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/c811e481-8c6f-4aaf-a4c5-b1b51cae409e)
+
+
 Contribution:
 Mahendra Vajja(10639742):
 * Created the API for editcustomer.html.
