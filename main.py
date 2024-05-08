@@ -1,7 +1,7 @@
 import psycopg2
 import json
 from psycopg2.extras import RealDictCursor
-from flask import Flask, session, render_template, request, redirect, g, url_for
+from flask import Flask, session, render_template, request, redirect, g, url_for,jsonify
 
 
 
@@ -57,6 +57,19 @@ def index1():
     products = cursor.fetchall()
 
     return render_template("index.html", products=products)
+@app.route("/products", methods=['POST'])
+def products():
+    if request.method == 'POST':
+        username = session.get('username')
+        selected_products = request.json
+        total_price = sum(product['price'] * product['quantity'] for product in selected_products)
+        total_quantity = sum(product['quantity'] for product in selected_products)
+
+        product_info = ', '.join(f"{product['product_name']} ({product['quantity']})" for product in selected_products)
+        cursor.execute("INSERT INTO product (username, total_quantity, total_price, product_names) VALUES (%s, %s, %s, %s)",
+                       (username, total_quantity, total_price, product_info))
+        conn.commit()
+        return jsonify({"message": "Products added successfully"})
 
 @app.route("/index.html")
 def index1():
