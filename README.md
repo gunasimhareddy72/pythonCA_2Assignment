@@ -8,12 +8,7 @@ The products are stored inside the .json file  can be accessed to customer and c
 The same goes to the manager but the manager has a special feature which is login, when he logins he can see the customer information with items oredered same as the customer but in the different html template called adminhome.html can perform the search, edit, and delete operations aswell, but both the customer and manager can't edit the items purchased.
 This is a simple application where customer and manger are the two roles where customer orders the groceries, and manager will process the orders by packing the stuff.
 So here's the screenshots below to show the pages how they are designed.
-![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/f4534906-4594-47f7-86d9-9396db726c35)
-![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/0e556717-c892-46fe-a31c-a865a5de2272)
-![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/e7338990-cf91-412f-a070-a32961c6aec8)
-![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/b3686acc-b9f0-4d85-b51e-9fee2e0b8dbe)
-![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/14e20225-9d4e-4b1a-9582-7d569cf13408)
-![image](https://github.com/gunasimhareddy72/pythonCA_2Assignment/assets/67228880/1258742b-5188-482e-ab73-0d86d6df2e37)
+
 
 Contribution:
 Mahendra Vajja(10639742):
