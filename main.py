@@ -50,6 +50,13 @@ def adminhome():
     cursor.execute("SELECT * FROM customer")
     customer = cursor.fetchall()
     return render_template('adminhome.html', customers=customer)
+@app.route("/index.html")
+def index1():
+    username = session.get('username')
+    cursor.execute("SELECT * FROM product WHERE username = %s", (username,))
+    products = cursor.fetchall()
+
+    return render_template("index.html", products=products)
 
 @app.route("/index.html")
 def index1():
